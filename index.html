@@ -727,7 +727,7 @@
                 <input type="password" id="adminPass" placeholder="एडमिन पासवर्ड दर्ज करें" onkeydown="if(event.key==='Enter')adminLogin()">
                 <div class="err" id="loginErr"></div>
                 <button style="width:100%;margin-top:10px" onclick="adminLogin()">एडमिन पैनल खोलें</button>
-                <p class="hint" style="margin-top:10px;text-align:left">डिफ़ॉल्ट पासवर्ड: <b>admin123</b></p>
+                <p class="hint" style="margin-top:10px;text-align:left"> <b> </b></p>
             </div>
 
         </div>
@@ -1344,7 +1344,7 @@ Answer: B`;
 
         /* ══════════════ ADMIN PANEL LOGIN ══════════════ */
         function getAdminPwd() {
-            return localStorage.getItem(LS_PWD) || 'admin123';
+            return localStorage.getItem(LS_PWD) || 'yogexam123@';
         }
 
         function adminLogin() {
