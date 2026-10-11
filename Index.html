@@ -201,17 +201,16 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none}
   </div>
 
   <div class="wrap">
-    <!-- Heading / Subheading / Settings -->
     <div class="card">
       <h2>📋 परीक्षा विवरण</h2>
       <div class="grid2">
         <div>
           <label class="fl">मुख्य हेडिंग (Heading)</label>
-          <input type="text" id="inTitle" placeholder="जैसे: राजस्थान पुलिस कांस्टेबल भर्ती परीक्षा 2025">
+          <input type="text" id="inTitle" value="कक्षा 5 साइंस ओलंपियाड परीक्षा">
         </div>
         <div>
           <label class="fl">सब-हेडिंग (Sub Heading)</label>
-          <input type="text" id="inSubtitle" placeholder="जैसे: सामान्य ज्ञान — प्रश्नपत्र सेट A">
+          <input type="text" id="inSubtitle" value="विज्ञान प्रश्नोत्तरी — सेट A">
         </div>
       </div>
       <div class="grid3" style="margin-top:4px">
@@ -221,7 +220,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none}
         </div>
         <div>
           <label class="fl">🔑 PDF पासवर्ड</label>
-          <input type="text" id="inPdfPass" value="1234" placeholder="PDF खोलने का पासवर्ड">
+          <input type="text" id="inPdfPass" value="1234">
         </div>
         <div>
           <label class="fl">🔒 एडमिन पासवर्ड बदलें</label>
@@ -232,40 +231,8 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none}
 
     <!-- Questions -->
     <div class="card">
-      <h2>📝 प्रश्न एवं बहुविकल्पीय उत्तर (यहाँ कॉपी-पेस्ट करें)</h2>
-
-      <details style="margin-bottom:12px;background:#f8fafc;border:1px solid var(--line);
-                      border-radius:9px;padding:10px 14px">
-        <summary style="cursor:pointer;font-weight:700;font-size:13.5px;color:var(--blue)">
-          📌 कॉपी-पेस्ट फॉर्मेट देखें (ज़रूरी है)
-        </summary>
-        <pre style="margin-top:10px;font-size:12.5px;line-height:1.75;color:#334155;
-                    white-space:pre-wrap;font-family:Consolas,monospace">
-1. भारत की राजधानी कौन है?
-A) मुंबई
-B) दिल्ली
-C) कोलकाता
-D) चेन्नई
-Answer: B
-
-2. HTML का पूरा नाम क्या है?
-A) Hyper Text Markup Language
-B) High Text Machine Language
-C) Hyper Tabular Markup Language
-D) कोई नहीं
-Answer: A
-
-नियम:
-• प्रश्न की पंक्ति "1." या "1)" या "Q1." से शुरू होनी चाहिए।
-• विकल्प A) B) C) D) से शुरू होने चाहिए (A. / (A) / A- भी चलेगा)।
-• सही उत्तर "Answer: B" लिखें।
-• एक से अधिक सही उत्तर हों तो "Answer: A,C" लिखें → चेकबॉक्स बनेगा।
-• हर प्रश्न के बीच एक खाली लाइन छोड़ें।</pre>
-      </details>
-
-      <textarea id="inQuestions" rows="18"
-        placeholder="यहाँ अपने 50 से 100 प्रश्न कॉपी-पेस्ट करें..."></textarea>
-
+      <h2>📝 प्रश्न एवं बहुविकल्पीय उत्तर (कक्षा 5 साइंस ओलंपियाड - 50 प्रश्न)</h2>
+      <textarea id="inQuestions" rows="18"></textarea>
       <div class="btnrow">
         <button class="btn-g" onclick="saveExam()">💾 सेव करें</button>
         <button class="btn-o" onclick="checkParse()">🔍 प्रश्न जाँचें</button>
@@ -275,28 +242,40 @@ Answer: A
       <div id="parseInfo" class="hint"></div>
     </div>
 
-    <!-- Start / Share -->
+    <!-- Start / Share / Secure Student Link Generator -->
     <div class="card" style="text-align:center;background:linear-gradient(135deg,#eff6ff,#eef2ff)">
       <h2 style="justify-content:center;border:none">🚀 परीक्षा शुरू करें और शेयर करें</h2>
       <p class="hint" style="margin-bottom:16px">
-        सेव करने के बाद स्टूडेंट के लिए परीक्षा शुरू करें या सीधे WhatsApp पर केवल प्रश्नपत्र भेजें (एडमिन पैनल नहीं दिखेगा)।
+        नीचे दिए गए बटन से **सुरक्षित छात्र लिंक** प्राप्त करें। इस लिंक से छात्रों को कभी भी एडमिन पैनल नहीं दिखेगा।
       </p>
       <div class="act-row" style="margin-top:0">
-        <button style="font-size:15px;padding:13px 30px" onclick="startExamFromAdmin()">
+        <button style="font-size:15px;padding:13px 25px" onclick="startExamFromAdmin()">
           ▶ स्टूडेंट परीक्षा शुरू करें
         </button>
-        <button class="btn-g" style="font-size:15px;padding:13px 30px" onclick="shareExamWhatsApp()">
-          🟢 WhatsApp पर केवल प्रश्न शेयर करें
+        <button class="btn-g" style="font-size:15px;padding:13px 25px" onclick="shareStudentLinkWhatsApp()">
+          🟢 WhatsApp पर छात्र लिंक शेयर करें
         </button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Modal for Student Link Output -->
+<div id="linkModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:15px;">
+  <div style="background:#fff;padding:25px;border-radius:12px;max-width:500px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+    <h3 style="color:var(--blue);margin-bottom:10px;">🔗 छात्र के लिए सुरक्षित लिंक तैयार है</h3>
+    <p class="hint" style="margin-bottom:12px;">इस लिंक को WhatsApp पर भेजें (इस पर क्लिक करने से सीधे परीक्षा खुलेगी):</p>
+    <input type="text" id="generatedStudentLink" readonly style="text-align:center;background:#f1f5f9;font-weight:bold;margin-bottom:15px;" />
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn-g" onclick="copyStudentLink()">📋 लिंक कॉपी करें</button>
+      <button class="btn-a" onclick="openWhatsAppDirect()">🟢 WhatsApp पर भेजें</button>
+      <button class="btn-r" onclick="closeLinkModal()">✕ बंद करें</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════════ 3. EXAM SCREEN ══════════════ -->
 <div id="screenExam" class="screen">
-
-  <!-- Pre-start -->
   <div id="preStart" class="wrap" style="padding-top:40px">
     <div class="card" style="max-width:620px;margin:0 auto">
       <h2>📖 परीक्षा निर्देश</h2>
@@ -317,7 +296,6 @@ Answer: A
     </div>
   </div>
 
-  <!-- Exam body -->
   <div id="examBody" style="display:none">
     <div class="exam-banner">
       <h1 id="exTitle"></h1>
@@ -347,21 +325,17 @@ Answer: A
       <h2>आपकी उत्तर पुस्तिका सफलतापूर्वक जमा हो गई है</h2>
       <p>अब सभी प्रश्न एवं विकल्प छिपा दिए गए हैं।</p>
       <p>नीचे दिए बटन से अपनी उत्तर पुस्तिका <b>पासवर्ड-प्रोटेक्टेड PDF</b> में डाउनलोड करें।</p>
-      <p style="font-size:12.5px;color:#94a3b8;margin-top:8px">
-        (परिणाम/स्कोर केवल PDF में ही दिखाई देगा — पासवर्ड एडमिन के पास है)
-      </p>
       <div class="act-row">
         <button class="btn-g" id="btnPdf" onclick="downloadPDF()">📥 उत्तर पुस्तिका PDF डाउनलोड करें</button>
         <button class="btn-a" id="btnWa" onclick="shareWhatsApp()">🟢 WhatsApp पर शेयर करें</button>
       </div>
-      <div style="margin-top:26px" id="backAdminRow">
+      <div style="margin-top:26px" id="backAdminRow" style="display:none">
         <button class="btn-o" onclick="backToAdmin()">🔙 एडमिन पैनल पर जाएँ</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Hidden report stage + overlays -->
 <div id="pdfStage"></div>
 <div id="loadingOverlay">
   <div class="spinner"></div>
@@ -370,15 +344,362 @@ Answer: A
 <div id="toast"></div>
 
 <script>
-/* ═══════════════════════════════════════════════════════
-   GLOBAL STATE
-   ═══════════════════════════════════════════════════════ */
 const LS_EXAM = 'examSystemData_v1';
 const LS_PWD  = 'examSystemAdminPwd_v1';
 
 let EXAM = { title:'', subtitle:'', duration:30, pdfPassword:'1234', questions:[] };
 
-let answers       = {};      // { questionIndex: [optionIndex,...] }
+const defaultOlympiadQuestions = `1. हमारे शरीर की सबसे बड़ी हड्डी कौन-सी है?
+A) ह्युमरस
+B) फीमर
+C) रेडियस
+D) टिबिया
+Answer: B
+
+2. कौन-सा ग्रह 'लाल ग्रह' (Red Planet) के नाम से जाना जाता है?
+A) शुक्र
+B) बृहस्पति
+C) मंगल
+D) शनि
+Answer: C
+
+3. पौधे अपने भोजन का निर्माण किस प्रक्रिया द्वारा करते हैं?
+A) वाष्पोत्सर्जन
+B) प्रकाश संश्लेषण (Photosynthesis)
+C) श्वसन
+D) अंकुरण
+Answer: B
+
+4. हमारे सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?
+A) शनि
+B) पृथ्वी
+C) बृहस्पति
+D) नेपच्यून
+Answer: C
+
+5. विटामिन 'सी' की कमी से कौन-सा रोग होता है?
+A) रिकेट्स
+B) बेरी-बेरी
+C) स्कर्वी
+D) रतौंधी
+Answer: C
+
+6. मनुष्य के शरीर में कुल कितनी हड्डियाँ होती हैं?
+A) 206
+B) 300
+C) 150
+D) 250
+Answer: A
+
+7. निम्नलिखित में से कौन-सा जीव केवल पौधे खाता है (शाकाहारी)?
+A) शेर
+B) चीता
+C) गाय
+D) भेड़िया
+Answer: C
+
+8. पृथ्वी का एकमात्र प्राकृतिक उपग्रह कौन-सा है?
+A) सूर्य
+B) चंद्रमा
+C) टाइटन
+D) फोロス
+Answer: B
+
+9. हवा में सबसे अधिक मात्रा में कौन-सी गैस पाई जाती है?
+A) ऑक्सीजन
+B) कार्बन डाइऑक्साइड
+C) नाइट्रोजन
+D) हाइड्रोजन
+Answer: C
+
+10. पानी का रासायनिक सूत्र (Chemical Formula) क्या है?
+A) CO2
+B) H2O
+C) O2
+D) NaCl
+Answer: B
+
+11. हमारे मुँह में भोजन को चबाने के लिए कुल कितने प्रकार के मुख्य दांत होते हैं?
+A) 2
+B) 3
+C) 4
+D) 5
+Answer: C
+
+12. निम्नलिखित में से कौन-सा एक कीट (Insect) है?
+A) मकड़ी
+B) तितली
+C) केंचुआ
+D) घोंघा
+Answer: B
+
+13. पौधों का कौन-सा भाग मिट्टी के अंदर रहता है?
+A) तना
+B) पत्ती
+C) जड़
+D) फूल
+Answer: C
+
+14. सूर्य हमें मुख्य रूप से क्या देता है?
+A) केवल प्रकाश
+B) केवल गर्मी
+C) प्रकाश और ऊष्मा दोनों
+D) पानी
+Answer: C
+
+15. किस विटामिन को 'सनशाइन विटामिन' भी कहा जाता है?
+A) विटामिन ए
+B) विटामिन बी
+C) विटामिन सी
+D) विटामिन डी
+Answer: D
+
+16. हमारे शरीर का कौन-सा अंग रक्त को पंप करता है?
+A) फेफड़ा
+B) हृदय (Heart)
+C) मस्तिष्क
+D) यकृत
+Answer: B
+
+17. मेंढक अपने बच्चे (टेडपोल) के रूप में कहाँ सांस लेता है?
+A) फेफड़ों से
+B) त्वचा से
+C) गिल्स (Gills) से
+D) नाक से
+Answer: C
+
+18. चंद्रमा स्वयं के प्रकाश से चमकता है या सूर्य के प्रकाश से?
+A) स्वयं के प्रकाश से
+B) सूर्य के प्रकाश से परावर्तन द्वारा
+C) तारों के प्रकाश से
+D) बिजली से
+Answer: B
+
+19. मलेरिया की बीमारी किस मच्छर के काटने से फैलती है?
+A) नर एनाफिलिस
+B) मादा एनाफिलिस
+C) एडीज मच्छर
+D) क्यूलेक्स
+Answer: B
+
+20. निम्नलिखित में से कौन-सी वस्तु पानी में तैरती है?
+A) लोहे की कील
+B) पत्थर का टुकड़ा
+C) लकड़ी का टुकड़ा
+D) कांच की गोली
+Answer: C
+
+21. हमारे फेफड़े शरीर में कौन-सी गैस अंदर लेते हैं?
+A) कार्बन डाइऑक्साइड
+B) ऑक्सीजन
+C) नाइट्रोजन
+D) हीलियम
+Answer: B
+
+22. पौधे सांस लेते समय कौन-सी गैस छोड़ते हैं?
+A) ऑक्सीजन
+B) कार्बन डाइऑक्साइड
+C) हाइड्रोजन
+D) नाइट्रोजन
+Answer: A
+
+23. निम्नलिखित में से कौन-सा एक नवीकरणीय (Renewable) ऊर्जा स्रोत है?
+A) कोयला
+B) पेट्रोल
+C) सौर ऊर्जा
+D) डीजल
+Answer: C
+
+24. हमारे सौरमंडल में सूर्य के सबसे निकट कौन-सा ग्रह है?
+A) बुध (Mercury)
+B) शुक्र
+C) पृथ्वी
+D) मंगल
+Answer: A
+
+25. बर्फ के पिघलने पर वह किस रूप में बदल जाती है?
+A) गैस
+B) ठोस
+C) द्रव (पानी)
+D) भाप
+Answer: C
+
+26. हमारे शरीर में कुल कितनी मुख्य ज्ञानेंद्रियां (Sense Organs) होती हैं?
+A) 3
+B) 4
+B) 5
+D) 6
+Answer: C
+
+27. निम्नलिखित में से कौन-सा जानवर अंडे देता है?
+A) कुत्ता
+B) बिल्ली
+C) मुर्गी
+D) गाय
+Answer: C
+
+28. प्रकाश की चाल सबसे अधिक किसमें होती है?
+A) पानी में
+B) हवा में
+C) निर्वात (Vacuum) में
+D) कांच में
+Answer: C
+
+29. निम्नलिखित में से कौन-सी गैस आग बुझाने में मदद करती है?
+A) ऑक्सीजन
+B) कार्बन डाइऑक्साइड
+C) हाइड्रोजन
+D) हीलियम
+Answer: B
+
+30. हमारे देश का राष्ट्रीय पक्षी कौन है?
+A) तोता
+B) कबूतर
+C) मोर
+D) चील
+Answer: C
+
+31. बीज से नए पौधे के उगने की प्रक्रिया को क्या कहते हैं?
+A) परागण
+B) अंकुरण (Germination)
+C) वाष्पोत्सर्जन
+D) प्रकाश संश्लेषण
+Answer: B
+
+32. निम्नलिखित में से कौन-सा एक अवांछित और हानिकारक पौधा है (पतवार)?
+A) गुलाब
+B) घास या खरपतवार
+C) आम का पेड़
+D) गेंदा
+Answer: B
+
+33. हमारे शरीर की सबसे बड़ी ग्रंथि (Gland) कौन-सी है?
+A) अग्नाशय
+B) यकृत (Liver)
+C) थायराइड
+D) पिट्यूटरी
+Answer: B
+
+34. पृथ्वी अपने अक्ष पर किस दिशा से किस दिशा में घूमती है?
+A) पूर्व से पश्चिम
+B) पश्चिम से पूर्व
+C) उत्तर से दक्षिण
+D) दक्षिण से उत्तर
+Answer: B
+
+35. निम्नलिखित में से कौन-सी ऊर्जा हमें भोजन से मिलती है?
+A) विद्युत ऊर्जा
+B) रासायनिक ऊर्जा
+C) यांत्रिक ऊर्जा
+D) चुंबकीय ऊर्जा
+Answer: B
+
+36. चींटियां एक सीधी लाइन में किस कारण चलती हैं?
+A) देखकर
+B) सूंघकर (फेरोमोन गंध द्वारा)
+C) सुनकर
+D) छूकर
+Answer: B
+
+37. निम्नलिखित में से कौन-सा जानवर सर्वाहारी (Omnivore) है?
+A) शेर
+B) गाय
+C) भालू
+D) घोड़ा
+Answer: C
+
+38. भोजन का पाचन हमारे शरीर के किस अंग में सबसे पहले शुरू होता है?
+A) पेट (Stomach)
+B) मुँह (Mouth)
+C) छोटी आंत
+D) बड़ी आंत
+Answer: B
+
+39. वर्षा के पानी को बचाना क्या कहलाता है?
+A) जल प्रदूषण
+B) वर्षा जल संचयन (Rainwater Harvesting)
+C) जल चक्र
+D) वाष्पीकरण
+Answer: B
+
+40. निम्नलिखित में से कौन-सा जलीय पौधा है?
+A) कमल (Lotus)
+B) गुलाब
+C) कैक्टस
+D) नीम
+Answer: A
+
+41. हमारे दांतों की सुरक्षा के लिए हमें प्रतिदिन क्या करना चाहिए?
+A) ब्रश करना
+B) मिट्टी खाना
+C) सोना
+D) दौड़ना
+Answer: A
+
+42. रेगिस्तान का जहाज किस जानवर को कहा जाता है?
+A) घोड़ा
+B) ऊंट (Camel)
+C) हाथी
+D) गधा
+Answer: B
+
+43. निम्नलिखित में से कौन-सा एक विद्युत का सुचालक (Good Conductor) है?
+A) लकड़ी
+B) रबर
+C) तांबा (Copper)
+D) प्लास्टिक
+Answer: C
+
+44. अंतरिक्ष में जाने वाले पहले व्यक्ति कौन थे?
+A) राकेश शर्मा
+B) यूरी गगारिन
+C) नील आर्मस्ट्रांग
+D) कल्पना चावला
+Answer: B
+
+45. हमारे शरीर में पानी का प्रतिशत लगभग कितना होता है?
+A) 20%
+B) 50%
+C) 70%
+D) 90%
+Answer: C
+
+46. निम्नलिखित में से कौन-सा एक प्राकृतिक रेशा (Natural Fiber) है?
+A) नायलॉन
+B) पॉलिएस्टर
+C) कपास (Cotton)
+D) रेयान
+Answer: C
+
+47. भूकंप की तीव्रता मापने के लिए किस यंत्र का उपयोग किया जाता है?
+A) बैरोमीटर
+B) थर्मामीटर
+C) सीस्मोग्राफ (Seismograph)
+D) स्टेथोस्कोप
+Answer: C
+
+48. सूर्य के प्रकाश में कुल कितने रंग होते हैं?
+A) 5
+B) 6
+C) 7
+D) 8
+Answer: C
+
+49. निम्नलिखित में से कौन-सी बीमारी दूषित पानी पीने से होती है?
+A) टीबी
+B) हैजा (Cholera)
+C) मलेरिया
+D) डेंगू
+Answer: B
+
+50. पृथ्वी को नीला ग्रह क्यों कहा जाता है?
+A) जंगलों के कारण
+B) अधिक पानी होने के कारण
+C) बादलों के कारण
+D) पहाड़ों के कारण
+Answer: B`;
+
+let answers       = {};      
 let examActive    = false;
 let submitted     = false;
 let violations    = 0;
@@ -390,9 +711,6 @@ let studentName   = '';
 let studentRoll   = '';
 let cachedBlob    = null;
 
-/* ═══════════════════════════════════════════════════════
-   HELPERS
-   ═══════════════════════════════════════════════════════ */
 function esc(s){
   return String(s==null?'':s).replace(/[&<>"']/g,
     c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -419,9 +737,6 @@ function fmtTime(sec){
   return m+':'+s;
 }
 
-/* ═══════════════════════════════════════════════════════
-   ADMIN LOGIN
-   ═══════════════════════════════════════════════════════ */
 function getAdminPwd(){ return localStorage.getItem(LS_PWD) || 'admin123'; }
 
 function adminLogin(){
@@ -440,9 +755,6 @@ function logout(){
   if(confirm('लॉगआउट करना चाहते हैं?')) location.reload();
 }
 
-/* ═══════════════════════════════════════════════════════
-   QUESTION PARSER
-   ═══════════════════════════════════════════════════════ */
 function parseQuestions(raw){
   const lines = String(raw||'').replace(/\r/g,'').split('\n');
   const out = [];
@@ -457,23 +769,19 @@ function parseQuestions(raw){
     if(!line) continue;
     let m;
 
-    // Answer line
     if((m = line.match(ansRe))){
       if(cur) cur.answerRaw = m[1].trim();
       continue;
     }
-    // New question
     if((m = line.match(qRe))){
       cur = { text:(m[2]||'').trim(), options:[], answerRaw:'', correct:[] };
       out.push(cur);
       continue;
     }
-    // Option line
     if((m = line.match(optRe)) && cur && cur.options.length < 8){
       cur.options.push(m[2].trim());
       continue;
     }
-    // Continuation
     if(cur){
       if(cur.options.length === 0){
         cur.text += (cur.text ? ' ' : '') + line;
@@ -483,12 +791,11 @@ function parseQuestions(raw){
     }
   }
 
-  // Resolve correct answers
   const final = [];
   for(const q of out){
     if(!q.text || q.options.length < 2) continue;
     q.correct = extractAnswers(q.answerRaw, q.options);
-    if(q.correct.length === 0) q.correct = [0]; // fallback
+    if(q.correct.length === 0) q.correct = [0]; 
     final.push(q);
   }
   return final;
@@ -511,9 +818,6 @@ function extractAnswers(ansStr, options){
   return [...new Set(idxs)].filter(i=>i>=0 && i<options.length);
 }
 
-/* ═══════════════════════════════════════════════════════
-   SAVE / LOAD EXAM
-   ═══════════════════════════════════════════════════════ */
 function saveExam(silent){
   const title    = document.getElementById('inTitle').value.trim();
   const subtitle = document.getElementById('inSubtitle').value.trim();
@@ -533,7 +837,6 @@ function saveExam(silent){
   EXAM = { title, subtitle, duration, pdfPassword: pdfPass, questions: qs };
   localStorage.setItem(LS_EXAM, b64e(JSON.stringify(EXAM)));
 
-  // Admin password change
   const newPwd = document.getElementById('inAdminPass').value.trim();
   if(newPwd){ localStorage.setItem(LS_PWD, newPwd); document.getElementById('inAdminPass').value=''; }
 
@@ -568,8 +871,12 @@ function loadExamToForm(){
       document.getElementById('inPdfPass').value  = d.pdfPassword || '1234';
       document.getElementById('inQuestions').value = rebuildText(d.questions||[]);
       document.getElementById('adminQCount').textContent = (d.questions||[]).length + ' प्रश्न';
+      return;
     }
   }catch(e){ console.warn(e); }
+
+  document.getElementById('inQuestions').value = defaultOlympiadQuestions;
+  saveExam(true);
 }
 
 function rebuildText(qs){
@@ -595,71 +902,43 @@ function clearAll(){
 }
 
 function loadSample(){
-  document.getElementById('inTitle').value = 'सामान्य ज्ञान परीक्षा 2025';
-  document.getElementById('inSubtitle').value = 'प्रश्नपत्र सेट – A | पूर्णांक: 5';
-  document.getElementById('inQuestions').value =
-`1. भारत की राजधानी कौन-सी है?
-A) मुंबई
-B) नई दिल्ली
-C) कोलकाता
-D) चेन्नई
-Answer: B
-
-2. HTML का पूरा नाम क्या है?
-A) Hyper Text Markup Language
-B) High Text Machine Language
-C) Hyper Tabular Markup Language
-D) इनमें से कोई नहीं
-Answer: A
-
-3. भारत का राष्ट्रीय पशु कौन है?
-A) शेर
-B) हाथी
-C) बाघ
-D) मोर
-Answer: C
-
-4. निम्न में से कौन-से भारत के महानगर हैं? (एक से अधिक)
-A) दिल्ली
-B) जयपुर
-C) मुंबई
-D) कोलकाता
-Answer: A,C,D
-
-5. 15 × 4 ÷ 2 + 10 = ?
-A) 40
-B) 45
-C) 50
-D) 35
-Answer: A`;
+  document.getElementById('inQuestions').value = defaultOlympiadQuestions;
   checkParse();
-  toast('📄 नमूना प्रश्न भर दिए गए');
+  toast('📄 ओलंपियाड के 50 प्रश्न भर दिए गए');
 }
 
-/* ═══════════════════════════════════════════════════════
-   WHATSAPP SHARE (ONLY EXAM LINK/DATA)
-   ═══════════════════════════════════════════════════════ */
-function shareExamWhatsApp(){
+/* छात्र के लिए सुरक्षित लिंक जनरेट करना जिसमें ?student=1 जुड़ा होगा */
+function shareStudentLinkWhatsApp(){
   if(!saveExam(true)){ toast('⚠️ पहले वैध प्रश्न सेव करें'); return; }
   
-  // URL में डेटा एन्कोड करके भेजें ताकि छात्र सीधे परीक्षा स्क्रीन पर खुले (बिना एडमिन पैनल के)
-  const compressedData = localStorage.getItem(LS_EXAM);
-  const currentUrl = window.location.href.split('?')[0]; // मौजूदा पेज का लिंक
-  const examLink = currentUrl + '?exam=' + encodeURIComponent(compressedData) + '&direct=1';
+  const baseUrl = window.location.href.split('?')[0];
+  const studentLink = baseUrl + '?student=1';
 
+  document.getElementById('generatedStudentLink').value = studentLink;
+  document.getElementById('linkModal').style.display = 'flex';
+}
+
+function copyStudentLink(){
+  const inp = document.getElementById('generatedStudentLink');
+  inp.select();
+  document.execCommand('copy');
+  toast('📋 लिंक कॉपी हो गया!');
+}
+
+function openWhatsAppDirect(){
+  const link = document.getElementById('generatedStudentLink').value;
   const msg = `📝 *${EXAM.title || 'ऑनलाइन परीक्षा'}*\n` +
               `${EXAM.subtitle || ''}\n` +
               `⏱ समय: ${EXAM.duration} मिनट\n\n` +
-              `नीचे दिए गए लिंक पर क्लिक करके परीक्षा शुरू करें (यह लिंक सीधे प्रश्नपत्र खोलेगा):\n` +
-              examLink;
-
+              `नीचे दिए गए लिंक पर क्लिक करके अपनी परीक्षा शुरू करें:\n` +
+              link;
   window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-  toast('🟢 WhatsApp पर शेयर करने के लिए तैयार है');
 }
 
-/* ═══════════════════════════════════════════════════════
-   START EXAM
-   ═══════════════════════════════════════════════════════ */
+function closeLinkModal(){
+  document.getElementById('linkModal').style.display = 'none';
+}
+
 function startExamFromAdmin(){
   if(!saveExam(true)){ toast('⚠️ पहले वैध प्रश्न सेव करें'); return; }
   launchExamScreen();
@@ -672,12 +951,6 @@ function launchExamScreen(){
   document.getElementById('startErr').textContent = '';
   document.getElementById('stName').value = '';
   document.getElementById('stRoll').value = '';
-  
-  // यदि डायरेक्ट लिंक से खुला है, तो एडमिन पर वापस जाने का बटन छिपा दें
-  if(window.isDirectStudent){
-    const backBtn = document.getElementById('backAdminRow');
-    if(backBtn) backBtn.style.display = 'none';
-  }
 }
 
 function beginExam(){
@@ -734,9 +1007,6 @@ function updateTimer(){
   else box.classList.remove('danger');
 }
 
-/* ═══════════════════════════════════════════════════════
-   RENDER QUESTIONS
-   ═══════════════════════════════════════════════════════ */
 function renderQuestions(){
   const c = document.getElementById('qContainer');
   c.innerHTML = '';
@@ -807,9 +1077,6 @@ function updateProgress(){
   if(pb) pb.textContent = done + ' / ' + total;
 }
 
-/* ═══════════════════════════════════════════════════════
-   ANTI-CHEATING
-   ═══════════════════════════════════════════════════════ */
 function addViolation(reason){
   if(!examActive || submitted) return;
   violations++;
@@ -877,9 +1144,6 @@ window.addEventListener('beforeunload', e=>{
   }
 });
 
-/* ═══════════════════════════════════════════════════════
-   SUBMIT EXAM
-   ═══════════════════════════════════════════════════════ */
 function submitExam(auto){
   if(submitted) return;
 
@@ -915,9 +1179,6 @@ function submitExam(auto){
   toast(auto ? '⏱ समय समाप्त — उत्तर पुस्तिका स्वतः जमा हो गई' : '✅ उत्तर पुस्तिका जमा हो गई', 3500);
 }
 
-/* ═══════════════════════════════════════════════════════
-   RESULT COMPUTATION
-   ═══════════════════════════════════════════════════════ */
 let RESULT = null;
 
 function computeResult(){
@@ -942,9 +1203,6 @@ function computeResult(){
   };
 }
 
-/* ═══════════════════════════════════════════════════════
-   PDF GENERATION
-   ═══════════════════════════════════════════════════════ */
 function buildReportHTML(){
   const r = RESULT;
   const title    = EXAM.title || 'ऑनलाइन परीक्षा';
@@ -1138,31 +1396,39 @@ function backToAdmin(){
   location.reload();
 }
 
-/* ═══════════════════════════════════════════════════════
-   INIT (Check Direct Student Link)
-   ═══════════════════════════════════════════════════════ */
+/* ऑटो-डिटेक्ट: यदि लिंक में ?student=1 है तो एडमिन पैनल छिप जाएगा और सीधे परीक्षा खुलेगी */
 (function init(){
   const params = new URLSearchParams(window.location.search);
-  const directData = params.get('exam');
-  const isDirect = params.get('direct');
+  const isStudent = params.get('student');
 
-  if(directData && isDirect){
-    try{
-      const decoded = JSON.parse(b64d(directData));
-      EXAM = decoded;
-      window.isDirectStudent = true;
-      // सीधे परीक्षा / निर्देश स्क्रीन पर भेजें (एडमिन पैनल बाईपास)
-      launchExamScreen();
-      return;
-    }catch(e){
-      console.warn('Invalid direct exam link');
-    }
+  if(isStudent === '1'){
+    loadExamDataSilent();
+    launchExamScreen();
+    return;
   }
 
   loadExamToForm();
   document.getElementById('adminPass')
     .addEventListener('keydown', e=>{ if(e.key==='Enter') adminLogin(); });
 })();
+
+function loadExamDataSilent(){
+  try{
+    const raw = localStorage.getItem(LS_EXAM);
+    if(raw){
+      const d = JSON.parse(b64d(raw));
+      EXAM = Object.assign(EXAM, d);
+      return;
+    }
+  }catch(e){}
+  
+  // यदि स्टोरेज में न मिले तो डिफ़ॉल्ट ओलंपियाड प्रश्न लोड कर लें
+  EXAM.questions = parseQuestions(defaultOlympiadQuestions);
+  EXAM.title = "कक्षा 5 साइंस ओलंपियाड परीक्षा";
+  EXAM.subtitle = "विज्ञान प्रश्नोत्तरी — सेट A";
+  EXAM.duration = 30;
+  EXAM.pdfPassword = "1234";
+}
 </script>
 </body>
 </html>
