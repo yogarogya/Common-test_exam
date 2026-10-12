@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>National Assessment & Examination Portal</title>
+<title>* YOG AROGYA KENDRA **</title>
 
 <!-- PDF Generation Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -227,8 +227,8 @@ button:hover{filter:brightness(1.1);transform:translateY(-1px)}
 <!-- EXAM SCREEN -->
 <div id="screenExam" class="screen">
   <div class="exam-header">
-    <div class="inst-name">National Assessment Portal</div>
-    <div class="inst-sub">Official Online Examination Board</div>
+    <div class="inst-name">* YOG AROGYA KENDRA **</div>
+    <div class="inst-sub">~ Online Examination Portal ~</div>
   </div>
 
   <div class="exam-bar">
@@ -512,7 +512,7 @@ function computeResult(){
 
 function buildReportHTML(){
   const r = RESULT;
-  let h = `<div class="pdfdoc"><div class="pdfhead"><h1>National Examination Board</h1><div style="font-size:11px;color:#64748b;letter-spacing:2px;margin-top:2px">OFFICIAL ASSESSMENT REPORT</div></div>`;
+  let h = `<div class="pdfdoc"><div class="pdfhead"><h1>* YOG AROGYA KENDRA **</h1><div style="font-size:11px;color:#64748b;letter-spacing:2px;margin-top:2px">ASSESSMENT REPORT</div></div>`;
   h += `<h2 style="text-align:center;font-size:15px;color:#475569;margin-bottom:16px">${EXAM_CONFIG.title}</h2>`;
   h += `<table class="pdfmeta"><tr><td class="lbl">अभ्यर्थी का नाम</td><td>${studentName}</td><td class="lbl">दिनांक</td><td>${r.date}</td></tr><tr><td class="lbl">कुल प्रश्न</td><td>${r.total}</td><td class="lbl">समय लिया गया</td><td>${fmtTime(r.elapsed)} मिनट</td></tr></table>`;
   h += `<div class="pdfscore"><div class="big">प्राप्तांक : ${r.correctCount} / ${r.total} (${r.percent}%)</div><div style="font-size:13px;color:#475569;margin-top:4px">${r.pass?'उत्तीर्ण (PASS)':'अनुत्तीर्ण (FAIL)'}</div></div>`;
